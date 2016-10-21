@@ -28,3 +28,9 @@ const html = (() => {
 })()
 
 console.log('isProd:'+isProd)
+
+
+let renderer
+
+
+require('./build/')
