@@ -28,9 +28,21 @@ const html = (() => {
 })()
 
 console.log('isProd:'+isProd)
+console.log(html)
 
 
-let renderer
+// let renderer
 
 
-require('./build/')
+// require('./build/')
+
+
+app.use('/dist', express.static(resolve('./dist')))
+
+
+app.get('*', (req, res) => {
+
+} )
+
+
+const port = process.env.PORT || 8080
