@@ -6,14 +6,15 @@ const webpack = require('webpack')
 
 module.exports = {
 
-	entry : {
-		app : './src/client-entry.js'
+	entry: {
+		app: './src/client-entry.js'
 	},
-	output : {
-		path : path.resolve(__dirname, '../dist')
-		, filename : 'client-bundle.js'
+	output: {
+		path: path.resolve(__dirname, '../dist'),
+		publicPath: '/dist/',
+		filename: 'client-bundle.js'
 	},
-	module:{
+	module: {
 
 	}
 }

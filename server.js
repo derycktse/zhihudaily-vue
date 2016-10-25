@@ -13,6 +13,8 @@ const favicon = require('serve-favicon')
 	// const serialize = require('serialize-javascript')
 
 
+const createBundleRenderer = require('vue-server-renderer').createBundleRenderer
+
 
 const app = express()
 
@@ -27,22 +29,42 @@ const html = (() => {
 	}
 })()
 
-console.log('isProd:' + isProd)
-console.log(html)
+// console.log('isProd:' + isProd)
+// console.log(html)
 
 
-// let renderer
+let renderer
 
+	console.log('****************')
+require('./build/setup-dev-server')(app, bundle => {
+	renderer = createRenderer(bundle)
+})
 
-// require('./build/')
-
+function createRenderer(bundle) {
+	return createBundleRenderer(bundle, {
+		cache: require('lru-cache')({
+			max: 1000,
+			maxAge: 1000 * 60 * 15
+		})
+	})
+}
 
 app.use('/dist', express.static(resolve('./dist')))
 app.use(favicon(resolve('./src/assets/logo.png')))
 
 
 app.get('*', (req, res) => {
-	res.write('asdasdasd')
+	// res.end('waiting for compilation... refresh in a moment.')
+
+	const context = {
+		url: req.url
+	}
+	// const renderStream = renderer.renderToStream(context)
+
+	console.log('****************')
+	res.write(html.head)
+	res.write("<div>hello world2</div>")
+	res.end(html.tail)
 })
 
 

@@ -13,11 +13,14 @@
   "author": "",
   "devDependencies": {
     "cross-env": "^2.0.0",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.12.2"
   },
   "dependencies": {
     "es6-promise": "^3.2.1",
     "serve-favicon": "^2.3.0",
-    "vue": "^2.0.3"
+    "vue": "^2.0.0",
+    "vue-server-renderer": "^2.0.0"
   }
 }

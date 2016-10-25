@@ -14,5 +14,5 @@ const config = Object.assign({}, base, {
 	])
 })
 
-console.log(config)
+// console.log(config)
 module.exports = config
