@@ -1,4 +1,3 @@
-module.exports = {
+import {app} from './app'
 
-	a:3
-}
+
