@@ -10,7 +10,7 @@ module.exports = (app, opts) => {
 	clientConfig.output.filename = '[name].js'
 	clientConfig.plugins.push(
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugins()
+		new webpack.NoErrorsPlugin()
 		)
 
 
