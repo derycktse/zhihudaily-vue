@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const base = require('./webpack.base.config')
+const HTMLPlugin = require('html-webpack-plugin')
 
 const config = Object.assign({}, base, {
 	plugins: (base.plugins || []).concat([
@@ -10,10 +11,10 @@ const config = Object.assign({}, base, {
 		// new webpack.optimize.CommonsChunkPlugin({
 		// 	name : 'vendor'
 		// }),
-		// //generate output HTML
-		// new HTMLPlugin({
-		// 	template : 'src/index.template.html'
-		// })
+		//generate output HTML
+		new HTMLPlugin({
+			template : 'src/index.template.html'
+		})
 	])
 })
 

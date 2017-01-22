@@ -14,11 +14,11 @@
   "dependencies": {
     "express": "^4.14.0",
     "lru-cache": "^4.0.2",
-    "vue": "^2.1.8",
-    "vue-server-renderer": "^2.1.8",
+    "vue": "^2.1.10",
     "vuex": "^2.1.0"
   },
   "devDependencies": {
+    "html-webpack-plugin": "^2.24.1",
     "webpack": "^2.2.0-rc.3",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.13.2"

@@ -26,12 +26,19 @@ if (isProd) {} else {
 }
 
 function createRenderer(bundle) {
-	return bundle
+	return require('vue-server-renderer').createBundleRenderer(bundle, {
+
+	})
 
 }
 
-function parseIndex(index) {
-	return index
+function parseIndex(template) {
+	const contentMarker = '<!-- APP -->'
+	const i = template.indexOf(contentMarker)
+	return {
+		head: template.slice(0, i),
+		tail: template.slice(i + contentMarker.length)
+	}
 }
 
 // indexHTML = fs.readFileSync(resolve('./src/index.html'), 'utf-8')
@@ -40,7 +47,7 @@ function parseIndex(index) {
 
 app.get('*', (req, res) => {
 
-	if(!renderer){
+	if (!renderer) {
 		return res.end('waiting for compilation... refresh in a moment.')
 	}
 
@@ -51,9 +58,20 @@ app.get('*', (req, res) => {
 	}
 	const renderStream = renderer.renderToStream(context)
 
+	renderStream.once('data', () => {
+		res.write(indexHTML.head)
+	})
 
-	res.write(indexHTML)
-	return res.end('hello world')
+	renderStream.on('data', chunk => {
+		res.write(chunk)
+	})
+
+	renderStream.on('end', () => {
+		res.end(indexHTML.tail)
+	})
+
+
+
 })
 
 
