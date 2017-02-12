@@ -23,15 +23,20 @@ module.exports = {
 			test: /\.vue$/,
 			loader: 'vue-loader',
 			options: vueConfig
-		}
-		, {
+		}, {
 			test: /\.js$/,
 			loader: 'buble-loader',
 			exclude: /node_modules/,
 			options: {
 				objectAssign: 'Object.assign'
 			}
-		}
-		]
+		}, {
+			test: /\.(png|jpg|gif|svg)$/,
+			loader: 'url-loader',
+			options: {
+				limit: 10000,
+				name: '[name].[ext]?[hash]'
+			}
+		}]
 	}
 }
