@@ -3,11 +3,23 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-export default new Router({
+const User = {
+	template: '<a>User {{ $route.params.id }}</a>'
+}
 
+
+import ItemView from '../views/ItemView.vue'
+
+
+export default new Router({
+	mode: 'history',
 	routes: [{
 		path: '/',
-		 redirect: '/top'
+		// redirect: '/top'
+		component: ItemView
+	}, {
+		path: '/user/:id',
+		component: User
 	}]
 
 })

@@ -1,5 +1,6 @@
 <style lang="stylus">
 body
+  //background-color blue
 
 .header
   img
@@ -17,6 +18,9 @@ body
            <router-link to="/">
           <img src="~public/top_logo.png" alt="" class="zhihu-logo">
         </router-link>
+        <router-link to="/user">user</router-link>
+        <router-link to="/user/123">user123</router-link> 
+        <router-view></router-view>
    			</nav>
    		</header>
 	</div>
