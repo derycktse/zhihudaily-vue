@@ -59,7 +59,7 @@ app.get('*', (req, res) => {
 	const renderStream = renderer.renderToStream(context)
 
 	renderStream.once('data', () => {
-		res.write(indexHTML.head)
+		res.write(indexHTML.head +'<!-- deryck header text test -->')
 	})
 
 	renderStream.on('data', chunk => {
