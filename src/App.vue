@@ -19,10 +19,11 @@ body
           <img src="~public/top_logo.png" alt="" class="zhihu-logo">
         </router-link>
         <router-link to="/user">user</router-link>
-        <router-link to="/user/123">user123</router-link> 
-        <router-view></router-view>
    			</nav>
    		</header>
+      <transition name="fade" mode="out-in">
+      <router-view class="view"></router-view>
+    </transition>
 	</div>
 </template>
 
