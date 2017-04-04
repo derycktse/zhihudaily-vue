@@ -12,5 +12,5 @@ const app = new Vue({
 
 
 export {
-	app
+	app,router
 }

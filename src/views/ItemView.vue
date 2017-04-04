@@ -1,3 +1,3 @@
 <template>
-	    <router-link to="/Deryck">Deryck</router-link>
+	    <div class="deryckdiv"></div>
 </template>
