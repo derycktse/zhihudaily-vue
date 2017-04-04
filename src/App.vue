@@ -13,17 +13,12 @@ body
 <template>
 	<div id="app">
    		<header class="header">
-   			<nav class="inner">
-   				<a href="/"> <img class="logo" src="~public/top_logo.png" alt="logo" /></a>
+   		   <nav class="inner">
            <router-link to="/">
-          <img src="~public/top_logo.png" alt="" class="zhihu-logo">
-        </router-link>
-        <router-link to="/user">user</router-link>
-   			</nav>
+             <img src="../public/top_logo.png" alt="首页" class="zhihu-logo" />
+           </router-link>
+         </nav>
    		</header>
-      <transition name="fade" mode="out-in">
-      <router-view class="view"></router-view>
-    </transition>
 	</div>
 </template>
 
