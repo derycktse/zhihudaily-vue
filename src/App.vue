@@ -1,25 +1,23 @@
-<style lang="stylus">
-body
-  //background-color blue
-
-.header
-  img
-    color transparent
-
-
-
-</style>
-
 <template>
-	<div id="app">
-   		<header class="header">
-   		   <nav class="inner">
-           <router-link to="/">
-             <img src="../public/top_logo.png" alt="首页" class="zhihu-logo" />
-           </router-link>
-         </nav>
-   		</header>
-  
-	</div>
+  <div id="app">
+    <!-- <img src="./assets/logo.png"> -->
+    <router-view></router-view>
+  </div>
 </template>
 
+<script>
+export default {
+  name: 'app'
+}
+</script>
+
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
