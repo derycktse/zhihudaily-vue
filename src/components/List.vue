@@ -1,18 +1,12 @@
 <template>
 	<div>
 		hello {{ name }}
-    	<!-- 	<li v-for="story in stories">
-      			{{ story.title }}
-    		</li> -->
-    		
     		<h1>{{ zhihudata.stories.length }}</h1>
     		<a v-for="item in zhihudata.stories">
     			<img v-bind:src="item.images[0]">
     			<p>{{ item.title }}</p>
     		</a>
 	</div>
-	<!-- <h1> {{  }} </h1> -->
-
 </template>
 
 <script>
