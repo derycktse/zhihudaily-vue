@@ -4,8 +4,11 @@
     		<li v-for="story in stories">
       			{{ story.title }}
     		</li>
+    		
+    		<h1>{{ zhihudata.length }}</h1>
 	</div>
-	<!-- <h1> {{ zhihudata }} </h1> -->
+	<!-- <h1> {{  }} </h1> -->
+
 </template>
 
 <script>
@@ -30,27 +33,44 @@ const fetchedData = {
  
 // let api = 'http://news-at.zhihu.com/api/3/stories/latest'
 let api = "http://119.29.68.183:8088/news"
+// let api = "http://119.29.68.183:8088/newsByDate?time=20170410"
 
 import axios from 'axios'
 
-let zhihudata
-axios.get(api)
-  .then(function (response) {
-    	zhihudata =response.data
-      })
-  .catch(function (error) {
-    console.log(error);
-  });
+let zhihudata = []
 
 
 export default {
-	data(){
-		return {
-			name : 'deryck',
-			stories : fetchedData.stories,
-			zhihudata : zhihudata
+	data() {
+			return {
+				name: 'deryck',
+				stories: fetchedData.stories,
+				zhihudata: []
+			}
+		},
+		created() {
+			this.fetchData()
+		},
+		beforeCreate() {
+
+		},
+		methods: {
+			fetchData() {
+				let self = this
+				axios.get(api)
+					.then(response => {
+						debugger
+						return  response.data
+					}).then(data=>{
+						debugger
+						self.zhihudata = data.stories 
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+
+			}
 		}
-	}
 }
 
 </script>
