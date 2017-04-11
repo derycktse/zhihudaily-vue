@@ -5,6 +5,7 @@
       			{{ story.title }}
     		</li>
 	</div>
+	<!-- <h1> {{ zhihudata }} </h1> -->
 </template>
 
 <script>
@@ -26,12 +27,28 @@ const fetchedData = {
 		title: "常出现在签名档的 MBTI 的测试，其实早就被学界抛弃了"
 	}]
 }
+ 
+// let api = 'http://news-at.zhihu.com/api/3/stories/latest'
+let api = "http://119.29.68.183:8088/news"
+
+import axios from 'axios'
+
+let zhihudata
+axios.get(api)
+  .then(function (response) {
+    	zhihudata =response.data
+      })
+  .catch(function (error) {
+    console.log(error);
+  });
+
 
 export default {
 	data(){
 		return {
 			name : 'deryck',
-			stories : fetchedData.stories
+			stories : fetchedData.stories,
+			zhihudata : zhihudata
 		}
 	}
 }

@@ -11,6 +11,7 @@ var express = require('express')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
+const axios  = require('axios')
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
@@ -21,6 +22,22 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
+
+let zhihuAPI = require('../config/api')
+
+app.use('/api', (req, res)=>{
+  axios.get(zhihuAPI.lastest).then(response =>{
+    console.log(response)
+    res.writeHead(200, response.headers)
+    res.write(response)
+    res.end()
+  }).catch(error=>{
+    res.end(error)
+  })
+  // res.end('you are requesting an api'+ zhihuAPI.lastest)
+})
+
+
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
