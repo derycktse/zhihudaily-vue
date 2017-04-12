@@ -1,14 +1,32 @@
+<style type="text/css">
+	section .listItem{
+		height: 150px;
+		padding: 15px;
+		border-radius: 20px;
+		box-shadow: 0 4px 6px #ccc;
+	}
+
+	section .listItem a{
+		display: flex;
+		justify-content: space-between;
+	}
+	section ul{
+		list-style: none;
+	}
+</style>
 <template>
 	<div>
 		<section>
     		<h1> 共 {{ zhihudata.stories.length }} 条结果</h1>
     		<div>{{ zhihudata.date }} </div>
-    		<li v-for="item in zhihudata.stories">
-    			<a href="javascript:alert(123)" >
-    				<img v-bind:src="item.images[0]">
-    				<p>{{ item.title }}</p>
-    			</a>
-    		</li>
+    		<ul>
+    			<li v-for="item in zhihudata.stories" class="	listItem">
+    				<a href="javascript:alert(123)" >
+    					<p class="des">{{ item.title }}</p>
+    					<img v-bind:src="item.images[0]">
+    				</a>
+    			</li>
+    		</ul>
     	</section>
 	</div>
 </template>
