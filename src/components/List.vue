@@ -16,6 +16,9 @@
 </style>
 <template>
 	<div>
+		<carousel>
+			
+		</carousel>
 		<section>
     		<h1> 共 {{ zhihudata.stories.length }} 条结果</h1>
     		<div>{{ zhihudata.date }} </div>
@@ -35,6 +38,7 @@
 import axios from 'axios'
 import API from '../api/index'
 import * as Util from '../common/util'
+import Carousel from '../components/Carousel.vue'
 
 let zhihudata = []
 
@@ -42,6 +46,9 @@ let zhihudata = []
 
 
 export default {
+	components:{
+		Carousel
+	},
 	data() {
 			return {
 				name: 'deryck',
