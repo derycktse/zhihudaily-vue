@@ -18,7 +18,9 @@
 	<div>
 		<carousel>
 			<div v-for="(item, index) in zhihudata.top_stories">
-				<div>{{ item.title }}</div>
+				<router-link :title="item.title"  :to="`detail/${item.id}`" >
+					<img :alt="item.title" :src="item.image"/>	
+				</router-link>
 			</div>
 		</carousel>
 		<section>
@@ -86,6 +88,11 @@ export default {
 								return Util.replaceImageUrl(imageUrl)
 							})
 							return val
+						})
+
+						self.zhihudata.top_stories = self.zhihudata.top_stories.map(val=>{
+							 val.image = Util.replaceImageUrl(val.image)
+							 return val
 						})
 					}).catch(function(error) {
 						console.log(error);

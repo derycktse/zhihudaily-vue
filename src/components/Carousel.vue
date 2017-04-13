@@ -8,3 +8,29 @@
 		</div>
 	</div>
 </template>
+
+<script >
+
+export default {
+	mounted() {
+		this.interval = setInterval(() => {
+			this.next()
+		}, 5000)
+	},
+	 beforeDestroy () {
+      clearInterval(this.interval)
+      this.sliding = false
+    },
+	methods: {
+		to() {
+
+		},
+		next() {
+
+		},
+		prev() {
+
+		}
+	}
+}
+</script>
