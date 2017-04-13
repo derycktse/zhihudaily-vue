@@ -17,7 +17,9 @@
 <template>
 	<div>
 		<carousel>
-			
+			<div v-for="(item, index) in zhihudata.top_stories">
+				<div>{{ item.title }}</div>
+			</div>
 		</carousel>
 		<section>
     		<h1> 共 {{ zhihudata.stories.length }} 条结果</h1>
@@ -39,6 +41,7 @@ import axios from 'axios'
 import API from '../api/index'
 import * as Util from '../common/util'
 import Carousel from '../components/Carousel.vue'
+import CarouselItem from '../components/Carousel-item.vue'
 
 let zhihudata = []
 
@@ -47,7 +50,8 @@ let zhihudata = []
 
 export default {
 	components:{
-		Carousel
+		Carousel,
+		CarouselItem
 	},
 	data() {
 			return {
