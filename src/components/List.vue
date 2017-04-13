@@ -16,13 +16,7 @@
 </style>
 <template>
 	<div>
-		<carousel>
-			<div v-for="(item, index) in zhihudata.top_stories">
-				<router-link :title="item.title"  :to="`detail/${item.id}`" >
-					<img :alt="item.title" :src="item.image"/>	
-				</router-link>
-			</div>
-		</carousel>
+		<carousel :list="zhihudata.top_stories"></carousel>
 		<section>
     		<h1> 共 {{ zhihudata.stories.length }} 条结果</h1>
     		<div>{{ zhihudata.date }} </div>
@@ -56,49 +50,56 @@ export default {
 		CarouselItem
 	},
 	data() {
-			return {
-				name: 'deryck',
-				zhihudata: {
-					date: '',
-					stories: []
-				}
-			}
-		},
-		created() {
-			this.fetchData()
-		},
-		beforeCreate() {
-
-		},
-		methods: {
-			fetchData() {
-				let self = this
-				axios.get(API.lastest)
-					.then(response => {
-						if(!response.data) return 
-
-						let zhihudata =	self.zhihudata = response.data
-
-						if(zhihudata.date){
-							zhihudata.date = Util.formatReadableDate(zhihudata.date)
-						}
-
-						self.zhihudata.stories = self.zhihudata.stories.map(val => {
-							val.images = val.images.map(imageUrl => {
-								return Util.replaceImageUrl(imageUrl)
-							})
-							return val
-						})
-
-						self.zhihudata.top_stories = self.zhihudata.top_stories.map(val=>{
-							 val.image = Util.replaceImageUrl(val.image)
-							 return val
-						})
-					}).catch(function(error) {
-						console.log(error);
-					});
-
+		return {
+			name: 'deryck',
+			zhihudata: {
+				date: '',
+				stories: []
 			}
 		}
+	},
+	created() {
+		this.fetchData()
+	},
+	beforeCreate() {
+
+	},
+	computed:{
+		sliderList(){
+			let arr = []
+			arr.push({title:"deryck"})
+			return arr
+		}
+	},
+	methods: {
+		fetchData() {
+			let self = this
+			axios.get(API.lastest)
+				.then(response => {
+					if(!response.data) return 
+
+					let zhihudata =	self.zhihudata = response.data
+
+					if(zhihudata.date){
+						zhihudata.date = Util.formatReadableDate(zhihudata.date)
+					}
+
+					self.zhihudata.stories = self.zhihudata.stories.map(val => {
+						val.images = val.images.map(imageUrl => {
+							return Util.replaceImageUrl(imageUrl)
+						})
+						return val
+					})
+
+					self.zhihudata.top_stories = self.zhihudata.top_stories.map(val=>{
+						 val.image = Util.replaceImageUrl(val.image)
+						 return val
+					})
+				}).catch(function(error) {
+					console.log(error);
+				});
+
+		}
+	}
 }
 </script>
