@@ -5,6 +5,7 @@
 
 				<router-link :to="item.image">
 					<img :src="item.image" />
+					<p>{{ item.title }}</p>
 				</router-link>
 			</div>	
 		</div>
@@ -35,3 +36,24 @@ export default {
     }
 }
 </script>
+
+<style>
+	.swiper-container{
+		max-width: 640px;
+		height: 640px;
+	}
+	.swiper-slide{
+		position: relative;
+		cursor: pointer;
+	}
+	.swiper-slide p{
+		width: 70%;
+		word-wrap: break-word;
+		position: absolute;
+		text-align: center;
+		bottom: 30px;
+		left: 15%;
+		color: #fff;
+		cursor:pointer;
+	}
+</style>
