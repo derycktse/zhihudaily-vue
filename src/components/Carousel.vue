@@ -37,23 +37,21 @@ export default {
 }
 </script>
 
-<style>
-	.swiper-container{
-		max-width: 640px;
-		height: 640px;
-	}
-	.swiper-slide{
-		position: relative;
-		cursor: pointer;
-	}
-	.swiper-slide p{
-		width: 70%;
-		word-wrap: break-word;
-		position: absolute;
-		text-align: center;
-		bottom: 30px;
-		left: 15%;
-		color: #fff;
-		cursor:pointer;
-	}
+<style lang="stylus" rel="stylesheet/stylus">
+  .swiper-container
+    max-width: 640px
+    height: 640px
+
+  .swiper-slide
+    position: relative
+    cursor: pointer
+    p
+      width: 70%
+      word-wrap: break-word
+      position: absolute
+      text-align: center
+      bottom: 30px
+      left: 15%
+      color: #fff
+      cursor: pointer
 </style>
