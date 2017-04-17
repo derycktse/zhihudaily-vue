@@ -1,18 +1,18 @@
-<style type="text/css">
-	section .listItem{
-		height: 150px;
-		padding: 15px;
-		border-radius: 20px;
-		box-shadow: 0 4px 6px #ccc;
-	}
+ <style lang="stylus"  rel="stylesheet/stylus">
+	section
+		text-align:center
+		ul
+			list-style:none
+		.listItem
+			height:150px
+			padding:15px
+			border-radius: 20px
+			box-shadow: 0 4px 6px #ccc
+			a
+				display: flex
+				justify-content: space-between
 
-	section .listItem a{
-		display: flex;
-		justify-content: space-between;
-	}
-	section ul{
-		list-style: none;
-	}
+
 </style>
 <template>
 	<div>
@@ -22,10 +22,10 @@
     		<div>{{ zhihudata.date }} </div>
     		<ul>
     			<li v-for="item in zhihudata.stories" class="	listItem">
-    				<a href="javascript:alert(123)" >
+    				<router-link :to="`detail/${item.id}`">
     					<p class="des">{{ item.title }}</p>
     					<img v-bind:src="item.images[0]">
-    				</a>
+    				</router-link>
     			</li>
     		</ul>
     	</section>
