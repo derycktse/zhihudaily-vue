@@ -17,18 +17,7 @@
 <template>
 	<div>
 		<carousel :list="zhihudata.top_stories"></carousel>
-		<section>
-    		<h1> 共 {{ zhihudata.stories.length }} 条结果</h1>
-    		<div>{{ zhihudata.date }} </div>
-    		<ul>
-    			<li v-for="item in zhihudata.stories" class="	listItem">
-    				<router-link :to="`detail/${item.id}`">
-    					<p class="des">{{ item.title }}</p>
-    					<img v-bind:src="item.images[0]">
-    				</router-link>
-    			</li>
-    		</ul>
-    	</section>
+		<news-list :newsdata="zhihudata.stories" :date="zhihudata.date"></news-list>
 	</div>
 </template>
 
@@ -38,6 +27,7 @@ import API from '../api/index'
 import * as Util from '../common/util'
 import Carousel from '../components/Carousel.vue'
 import CarouselItem from '../components/Carousel-item.vue'
+import NewsList from '../components/NewsList.vue'
 
 let zhihudata = []
 
@@ -47,14 +37,16 @@ let zhihudata = []
 export default {
 	components:{
 		Carousel,
-		CarouselItem
+		CarouselItem,
+		NewsList
 	},
 	data() {
 		return {
 			name: 'deryck',
 			zhihudata: {
 				date: '',
-				stories: []
+				stories: [],
+				top_stories : []
 			}
 		}
 	},

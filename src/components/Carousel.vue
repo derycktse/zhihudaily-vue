@@ -3,7 +3,7 @@
 		<div class="swiper-wrapper">
 			<div class="swiper-slide" v-for="item in list">
 
-				<router-link :to="item.image">
+				<router-link :to="`detail/${item.id}`">
 					<img :src="item.image" />
 					<p>{{ item.title }}</p>
 				</router-link>
