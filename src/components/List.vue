@@ -17,7 +17,8 @@
 <template>
 	<div>
 		<carousel :list="zhihudata.top_stories"></carousel>
-		<news-list :newsdata="zhihudata.stories" :date="zhihudata.date"></news-list>
+		<news-list :newsdata="value.stories" :date="value.date"  v-for="(value, key) of newsDataList"></news-list>
+		<button class="loadmore-btn" @click="fetchPrevDateData()">更多</button>
 	</div>
 </template>
 
@@ -47,11 +48,14 @@ export default {
 				date: '',
 				stories: [],
 				top_stories : []
-			}
+			},
+			datePointer : new Date()
+			,
+			newsDataList  : []
 		}
 	},
 	created() {
-		this.fetchData()
+		this.fetchNewsList(API.lastest, {})
 	},
 	beforeCreate() {
 
@@ -72,10 +76,6 @@ export default {
 
 					let zhihudata =	self.zhihudata = response.data
 
-					if(zhihudata.date){
-						zhihudata.date = Util.formatReadableDate(zhihudata.date)
-					}
-
 					self.zhihudata.stories = self.zhihudata.stories.map(val => {
 						val.images = val.images.map(imageUrl => {
 							return Util.replaceImageUrl(imageUrl)
@@ -87,10 +87,50 @@ export default {
 						 val.image = Util.replaceImageUrl(val.image)
 						 return val
 					})
+
+					self.newsDataList.push(zhihudata)
 				}).catch(function(error) {
 					console.log(error);
 				});
 
+		},
+		fetchNewsList(url, params){
+			let self = this
+			axios.get(url, {
+				params: params
+			})
+			.then(response => {
+				if(!response.data) return
+
+				let zhihudata  = response.data
+
+					zhihudata.stories = zhihudata.stories.map(val => {
+						val.images = val.images.map(imageUrl => {
+							return Util.replaceImageUrl(imageUrl)
+						})
+						return val
+					})
+
+					if(zhihudata.top_stories){
+						zhihudata.top_stories = zhihudata.top_stories.map(val=>{
+						 val.image = Util.replaceImageUrl(val.image)
+						 return val
+						})
+					}
+					
+
+					self.newsDataList.push(zhihudata)
+			})
+			.catch(err=> {
+				console.log(err)
+			})
+		},
+		fetchPrevDateData(){
+			let time =  Util.formatDateWithFormat(new Date(), 'yyyyMMdd')
+			this.fetchNewsList( API.newsByDate , {
+				time : time
+			})
+			Util.plusToDate(self.datePointer  ,'day', -1 ) 
 		}
 	}
 }

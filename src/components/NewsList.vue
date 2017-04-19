@@ -1,6 +1,6 @@
 <template>
     <section>
-            <div>{{ date }} </div>
+            <div>{{ formatReadableDate(date) }} </div>
             <ul>
                 <li v-for="item in newsdata" class="   listItem">
                     <router-link :to="`detail/${item.id}`">
@@ -13,10 +13,15 @@
 </template>
 
 <script >
+import * as Util from '../common/util' 
     export default {
        props : {
          newsdata: Array,
          date:String
+       },
+       methods:{
+        formatReadableDate : Util.formatReadableDate
        } 
+
     }
 </script>
