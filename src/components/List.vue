@@ -49,7 +49,7 @@ export default {
 				stories: [],
 				top_stories : []
 			},
-			datePointer : new Date()
+			datePointer : null
 			,
 			newsDataList  : []
 		}
@@ -118,7 +118,11 @@ export default {
 						})
 					}
 					
-
+					if(!this.datePointer){
+						this.datePointer = new Date()
+					} else {
+						this.datePointer.setDate(this.datePointer.getDate()-1)
+					}
 					self.newsDataList.push(zhihudata)
 			})
 			.catch(err=> {
@@ -126,11 +130,10 @@ export default {
 			})
 		},
 		fetchPrevDateData(){
-			let time =  Util.formatDateWithFormat(new Date(), 'yyyyMMdd')
+			let time =  Util.formatDateWithFormat(this.datePointer, 'yyyyMMdd')
 			this.fetchNewsList( API.newsByDate , {
 				time : time
 			})
-			Util.plusToDate(self.datePointer  ,'day', -1 ) 
 		}
 	}
 }

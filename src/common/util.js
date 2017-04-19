@@ -17,24 +17,6 @@ export function replaceImageUrl(str) {
 	return str.replace(reg, 'https://images.weserv.nl/?url=$2')
 }
 
-
-export function plusToDate(currentDate, unit, howMuch) {
-
-	let config = {
-		second: 1000, // 1000 miliseconds
-		minute: 60000,
-		hour: 3600000,
-		day: 86400000,
-		week: 604800000,
-		month: 2592000000, // Assuming 30 days in a month
-		year: 31536000000 // Assuming 365 days in year
-	};
-
-	let now = new Date(currentDate);
-
-	return new Date(now + config[unit] * howMuch);
-}
-
 export function formatDateWithFormat(date, format, utc) {
 	var MMMM = ["\x00", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	var MMM = ["\x01", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
