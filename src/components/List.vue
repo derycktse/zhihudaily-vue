@@ -16,7 +16,7 @@
 </style>
 <template>
 	<div>
-		<carousel :list="zhihudata.top_stories"></carousel>
+		<carousel :list="newsDataList[0] && newsDataList[0].top_stories"></carousel>
 		<news-list :newsdata="value.stories" :date="value.date"  v-for="(value, key) of newsDataList"></news-list>
 		<button class="loadmore-btn" @click="fetchPrevDateData()">更多</button>
 	</div>
