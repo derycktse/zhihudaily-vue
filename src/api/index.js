@@ -1,7 +1,7 @@
-const API_ROOT = 'http://119.29.68.183:8088/'
+let API_ROOT = '/'
 
 export default {
-	lastest: API_ROOT + 'news',
-	newsbyid : API_ROOT + 'newsById',
-	newsByDate : API_ROOT + 'newsByDate'
+	lastest: API_ROOT + 'latest/',
+	newsbyid : API_ROOT + 'news/',
+	newsByDate : API_ROOT + 'before/'
 }

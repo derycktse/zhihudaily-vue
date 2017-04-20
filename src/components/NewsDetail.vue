@@ -9,13 +9,7 @@ import axios from 'axios'
 import API from '../api/index'
 import * as Util from '../common/util'
 
-const fetchNewsDetail = (newsID,callback) =>{
-	axios.get(API.newsbyid,{
-		params : {
-			id : newsID
-		}
-	}).then(callback)
-}
+
 export default {
 	data(){
 		 return {
@@ -24,11 +18,8 @@ export default {
 	},
 	mounted(){
 		let self = this
-		axios.get(API.newsbyid, {
-			params : {
-				id : this.$route.params.id
-			}
-		}).then((res)=>{
+		let url  = API.newsbyid + this.$route.params.id
+		axios.get(url).then((res)=>{
 			self.newsDetailData = res.data
 		})
 	},

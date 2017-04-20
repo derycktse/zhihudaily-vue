@@ -131,9 +131,7 @@ export default {
 		},
 		fetchPrevDateData(){
 			let time =  Util.formatDateWithFormat(this.datePointer, 'yyyyMMdd')
-			this.fetchNewsList( API.newsByDate , {
-				time : time
-			})
+			this.fetchNewsList( API.newsByDate  + time)
 		}
 	}
 }
