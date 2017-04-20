@@ -1,19 +1,3 @@
- <style lang="stylus"  rel="stylesheet/stylus">
-	section
-		text-align:center
-		ul
-			list-style:none
-		.listItem
-			height:150px
-			padding:15px
-			border-radius: 20px
-			box-shadow: 0 4px 6px #ccc
-			a
-				display: flex
-				justify-content: space-between
-
-
-</style>
 <template>
 	<div>
 		<carousel :list="newsDataList[0] && newsDataList[0].top_stories"></carousel>

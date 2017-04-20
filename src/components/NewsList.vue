@@ -2,12 +2,16 @@
     <section>
             <div>{{ formatReadableDate(date) }} </div>
             <ul>
-                <li v-for="item in newsdata" class="   listItem">
-                    <router-link :to="`detail/${item.id}`">
-                        <p class="des">{{ item.title }}</p>
-                        <img v-bind:src="item.images[0]">
-                    </router-link>
-                </li>
+                <router-link v-for="item in newsdata" :to="`detail/${item.id}`">
+                    <li class="list-item">
+                        <div class="news-desc">
+                            <p class="des">{{ item.title }}</p>
+                        </div>
+                        <div class="news-avatar">
+                            <img v-bind:src="item.images[0]">
+                        </div>
+                    </li>
+                </router-link>
             </ul>
     </section>
 </template>
@@ -25,3 +29,9 @@ import * as Util from '../common/util'
 
     }
 </script>
+<style lang="stylus"  rel="stylesheet/stylus" scoped>
+section
+    .list-item
+        position relative
+        border-radius 0.133rem
+</style>
