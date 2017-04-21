@@ -1,6 +1,6 @@
 <template>
     <section>
-            <div>{{ formatReadableDate(date) }} </div>
+            <div class="date-desc-box">{{ formatReadableDate(date) }} </div>
             <ul>
                 <router-link v-for="item in newsdata" :to="`detail/${item.id}`">
                     <li class="list-item">
@@ -31,20 +31,32 @@ import * as Util from '../common/util'
 </script>
 <style lang="stylus"  rel="stylesheet/stylus" scoped>
 section
+    .date-desc-box
+        background-color #028fd6
+        text-align center
+        font-size 35px
+        color #fff
+    ul 
+        padding 0 20px
     .list-item
         position relative
-        border-radius 0.133rem
-        border 1px solid #eaeaea
+        /*border 1px solid #eaeaea*/
         display flex
         flex-direction row
+        /*padding 1rem*/
+        padding 1rem 0
+        border-bottom 2px solid #eaeaea
         .news-desc
-            
+            flex 1
         .news-image-box
             position relative
             img
-                width 70px
-                height 70px
+                width 13rem 
 
     li
         list-style none
+    a
+        text-decoration none
+        color #000
+        font-size 30px
 </style>

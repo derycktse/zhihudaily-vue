@@ -21,7 +21,7 @@ export default {
 	props:{
 		list: Array
 	},
-    mounted () {
+  updated () {
       this.$nextTick(() => {
         new Swiper('.swiper-container', {
           direction: 'horizontal',
@@ -39,12 +39,14 @@ export default {
 
 <style lang="stylus" rel="stylesheet/stylus">
   .swiper-container
-    max-width: 640px
-    height: 640px
-
+    height 640px
+    color #000
   .swiper-slide
     position: relative
     cursor: pointer
+    img
+      width 100%
+      height 100%
     p
       width: 70%
       word-wrap: break-word
@@ -52,6 +54,6 @@ export default {
       text-align: center
       bottom: 30px
       left: 15%
-      color: #fff
+      color: #000
       cursor: pointer
 </style>

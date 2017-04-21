@@ -18,6 +18,7 @@ export default {
 
 <style>
 @import "./assets/css/reset.css";
+@import "./assets/css/zhihu_base.css";
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
