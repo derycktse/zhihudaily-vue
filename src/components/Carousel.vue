@@ -4,6 +4,7 @@
 			<div class="swiper-slide" v-for="item in list">
 
 				<router-link :to="`detail/${item.id}`">
+          <div class="swiper-mask"></div>
 					<img :src="item.image" />
 					<p>{{ item.title }}</p>
 				</router-link>
@@ -42,8 +43,15 @@ export default {
     height 640px
     color #000
   .swiper-slide
-    position: relative
-    cursor: pointer
+    position relative
+    cursor pointer
+    .swiper-mask
+      width 100%
+      height 100%
+      position absolute
+      top 0
+      left 0
+      background-image: linear-gradient(bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.1) 100%);
     img
       width 100%
       height 100%
@@ -54,6 +62,7 @@ export default {
       text-align: center
       bottom: 30px
       left: 15%
-      color: #000
-      cursor: pointer
+      color #fff
+      cursor pointer
+      font-size 30px
 </style>
