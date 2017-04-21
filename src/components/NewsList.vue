@@ -7,7 +7,7 @@
                         <div class="news-desc">
                             <p class="des">{{ item.title }}</p>
                         </div>
-                        <div class="news-avatar">
+                        <div class="news-image-box">
                             <img v-bind:src="item.images[0]">
                         </div>
                     </li>
@@ -34,4 +34,17 @@ section
     .list-item
         position relative
         border-radius 0.133rem
+        border 1px solid #eaeaea
+        display flex
+        flex-direction row
+        .news-desc
+            
+        .news-image-box
+            position relative
+            img
+                width 70px
+                height 70px
+
+    li
+        list-style none
 </style>
