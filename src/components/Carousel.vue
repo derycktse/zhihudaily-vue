@@ -18,11 +18,14 @@
 import 'swiper/dist/css/swiper.min.css'
 import Swiper from 'swiper'
 
+let swiperInitFlag = false
+
 export default {
 	props:{
 		list: Array
 	},
   updated () {
+      if(swiperInitFlag) return
       this.$nextTick(() => {
         new Swiper('.swiper-container', {
           direction: 'horizontal',
@@ -34,8 +37,9 @@ export default {
           preventClicks: false
         })
       })
+      swiperInitFlag = true
     }
-}
+  }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
