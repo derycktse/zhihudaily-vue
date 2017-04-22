@@ -18,14 +18,12 @@
 import 'swiper/dist/css/swiper.min.css'
 import Swiper from 'swiper'
 
-let swiperInitFlag = false
 
 export default {
 	props:{
 		list: Array
 	},
   updated () {
-      if(swiperInitFlag) return
       this.$nextTick(() => {
         new Swiper('.swiper-container', {
           direction: 'horizontal',

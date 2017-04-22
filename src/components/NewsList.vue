@@ -31,7 +31,6 @@ import * as Util from '../common/util'
     }
 </script>
 <style lang="stylus"  rel="stylesheet/stylus" scoped>
-
 section
     .date-desc-box
         background-color #028fd6

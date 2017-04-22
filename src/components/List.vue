@@ -2,7 +2,8 @@
 	<div>
 		<carousel :list="newsDataList[0] && newsDataList[0].top_stories"></carousel>
 		<news-list :newsdata="value.stories" :date="value.date"  v-for="(value, key) of newsDataList"></news-list>
-		<button class="loadmore-btn" @click="fetchPrevDateData()">更多</button>
+		<infinite-loading :on-infinite="onInfinite" ref="infiniteLoading"></infinite-loading>
+
 	</div>
 </template>
 
@@ -12,6 +13,7 @@ import API from '../api/index'
 import * as Util from '../common/util'
 import Carousel from '../components/Carousel.vue'
 import NewsList from '../components/NewsList.vue'
+import InfiniteLoading from 'vue-infinite-loading'
 
 let zhihudata = []
 
@@ -21,11 +23,11 @@ let zhihudata = []
 export default {
 	components:{
 		Carousel,
-		NewsList
+		NewsList,
+		InfiniteLoading
 	},
 	data() {
 		return {
-			name: 'deryck',
 			zhihudata: {
 				date: '',
 				stories: [],
@@ -33,55 +35,20 @@ export default {
 			},
 			datePointer : null
 			,
-			newsDataList  : []
-		}
-	},
-	created() {
-		this.fetchNewsList(API.lastest, {})
-	},
-	beforeCreate() {
-
-	},
-	computed:{
-		sliderList(){
-			let arr = []
-			arr.push({title:"deryck"})
-			return arr
+			newsDataList  : [],
+			fetchNewestFlag : false
 		}
 	},
 	methods: {
-		fetchData() {
-			let self = this
-			axios.get(API.lastest)
-				.then(response => {
-					if(!response.data) return 
+		onInfinite(){
+			let api 
 
-					let zhihudata =	self.zhihudata = response.data
-
-					self.zhihudata.stories = self.zhihudata.stories.map(val => {
-						val.images = val.images.map(imageUrl => {
-							return Util.replaceImageUrl(imageUrl)
-						})
-						return val
-					})
-
-					self.zhihudata.top_stories = self.zhihudata.top_stories.map(val=>{
-						 val.image = Util.replaceImageUrl(val.image)
-						 return val
-					})
-
-					self.newsDataList.push(zhihudata)
-				}).catch(function(error) {
-					console.log(error);
-				});
-
-		},
-		fetchNewsList(url, params){
-			let self = this
-			axios.get(url, {
-				params: params
-			})
-			.then(response => {
+			if(!this.fetchNewestFlag){
+				api = API.lastest
+			} else {
+				api = API.newsByDate + Util.formatDateWithFormat(this.datePointer, 'yyyyMMdd')
+			}
+			axios.get(api).then(response => {
 				if(!response.data) return
 
 				let zhihudata  = response.data
@@ -105,16 +72,12 @@ export default {
 					} else {
 						this.datePointer.setDate(this.datePointer.getDate()-1)
 					}
-					self.newsDataList.push(zhihudata)
+					this.newsDataList.push(zhihudata)
+					this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
+					if(!this.fetchNewestFlag) this.fetchNewestFlag=true
 			})
-			.catch(err=> {
-				console.log(err)
-			})
-		},
-		fetchPrevDateData(){
-			let time =  Util.formatDateWithFormat(this.datePointer, 'yyyyMMdd')
-			this.fetchNewsList( API.newsByDate  + time)
-		}
+
+		}	
 	}
 }
 </script>
