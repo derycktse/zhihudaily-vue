@@ -11,7 +11,6 @@ import axios from 'axios'
 import API from '../api/index'
 import * as Util from '../common/util'
 import Carousel from '../components/Carousel.vue'
-import CarouselItem from '../components/Carousel-item.vue'
 import NewsList from '../components/NewsList.vue'
 
 let zhihudata = []
@@ -22,7 +21,6 @@ let zhihudata = []
 export default {
 	components:{
 		Carousel,
-		CarouselItem,
 		NewsList
 	},
 	data() {

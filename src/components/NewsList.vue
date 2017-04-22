@@ -9,6 +9,7 @@
                         </div>
                         <div class="news-image-box">
                             <img v-bind:src="item.images[0]">
+                            <p v-if="item.multipic" class="tip"><i class="iconfont">&#xe61c</i>多图</p> 
                         </div>
                     </li>
                 </router-link>
@@ -30,6 +31,7 @@ import * as Util from '../common/util'
     }
 </script>
 <style lang="stylus"  rel="stylesheet/stylus" scoped>
+
 section
     .date-desc-box
         background-color #028fd6
@@ -40,10 +42,8 @@ section
         padding 0 20px
     .list-item
         position relative
-        /*border 1px solid #eaeaea*/
         display flex
         flex-direction row
-        /*padding 1rem*/
         padding 1rem 0
         border-bottom 2px solid #eaeaea
         .news-desc
@@ -52,6 +52,16 @@ section
             position relative
             img
                 width 13rem 
+            .tip
+                color #ffffff
+                position absolute
+                bottom 0
+                right 0
+                background rgba(0,0,0, 0.4) 
+                margin 0 !important
+                .iconfont
+                    font-family "iconfont"
+                    color #ffffff
 
     li
         list-style none
