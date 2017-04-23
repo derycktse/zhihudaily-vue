@@ -35,7 +35,6 @@ export default {
           preventClicks: false
         })
       })
-      swiperInitFlag = true
     }
   }
 </script>
