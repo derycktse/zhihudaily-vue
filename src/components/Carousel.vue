@@ -1,7 +1,7 @@
 <template>
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
-			<div class="swiper-slide" v-for="item in list">
+			<div class="swiper-slide" v-for="item in carouselList">
 
 				<router-link :to="`detail/${item.id}`">
           <div class="swiper-mask"></div>
@@ -21,25 +21,33 @@ import * as Util from  '../common/util'
 
 
 export default {
-	props:{
-		list: Array
-	},
+  computed : {
+    carouselList(){
+      return this.$store.getters.carouselData
+    } 
+  },
+  created(){
+    this.resetCarousel()
+  },
   methods: {
-    imageProxy: Util.replaceImageUrl
+    imageProxy: Util.replaceImageUrl,
+    resetCarousel() {
+      this.$nextTick(() => {
+              new Swiper('.swiper-container', {
+                direction: 'horizontal',
+                loop: true,
+                autoplay: 2500,
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                autoplayDisableOnInteraction: false,
+                preventClicks: false
+              })
+            })
+    }
   },
   updated () {
-      this.$nextTick(() => {
-        new Swiper('.swiper-container', {
-          direction: 'horizontal',
-          loop: true,
-          autoplay: 2500,
-          pagination: '.swiper-pagination',
-          paginationClickable: true,
-          autoplayDisableOnInteraction: false,
-          preventClicks: false
-        })
-      })
-    }
+      this.resetCarousel()
+      }
   }
 </script>
 

@@ -9,23 +9,30 @@ export const store = new Vuex.Store({
         newsDetail: {}
     },
     getters: {
-
+       carouselData : (state)=>{
+           if(state.carouselSet){
+               return state.carouselSet
+           } else {
+               state.carouselSet = state.zhihuDailyData[0] && state.zhihuDailyData[0].top_stories
+           }
+           return state.carouselSet || []
+       }
     },
     mutations: {
         handleNewsData(state, data) {
             if (!data) return
-            // debugger
             state.zhihuDailyData.push(data)
         }
     },
     actions: {
         fetchNewsList({ state, commit }) {
+            
             let newsCount = state.zhihuDailyData.length
             let newsApi
             if (!newsCount) {
                 newsApi = API.lastest
             } else {
-                const lastestNews = state.zhihuDailyData.slice(-1)
+                const lastestNews = state.zhihuDailyData.slice(-1)[0]
                 newsApi = API.newsByDate + lastestNews.date
             }
 
