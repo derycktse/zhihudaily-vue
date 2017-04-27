@@ -8,7 +8,7 @@
                             <p class="des">{{ item.title }}</p>
                         </div>
                         <div class="news-image-box">
-                            <img v-bind:src="item.images[0]">
+                            <img v-bind:src="imageProxy(item.images[0])">
                             <p v-if="item.multipic" class="tip"><i class="iconfont">&#xe61c</i>多图</p> 
                         </div>
                     </li>
@@ -25,7 +25,8 @@ import * as Util from '../common/util'
          date:String
        },
        methods:{
-        formatReadableDate : Util.formatReadableDate
+        formatReadableDate : Util.formatReadableDate,
+        imageProxy : Util.replaceImageUrl
        } 
 
     }

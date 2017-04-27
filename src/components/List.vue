@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<carousel :list="newsDataList[0] && newsDataList[0].top_stories"></carousel>
-		<news-list :newsdata="value.stories" :date="value.date"  v-for="(value, key) of newsDataList"></news-list>
-		<infinite-loading :on-infinite="onInfinite" ref="infiniteLoading"></infinite-loading>
+		<carousel :list="zhihuDailyData[0] && zhihuDailyData[0].top_stories"></carousel>
+		<news-list :newsdata="value.stories" :date="value.date"  v-for="(value, key) of zhihuDailyData"></news-list>
+		<!--<infinite-loading :on-infinite="onInfinite2" ref="infiniteLoading"></infinite-loading>-->
 
 	</div>
 </template>
@@ -26,58 +26,22 @@ export default {
 		NewsList,
 		InfiniteLoading
 	},
+	mounted(){
+		this.$store.dispatch('fetchNewsList')
+	},
 	data() {
 		return {
-			zhihudata: {
-				date: '',
-				stories: [],
-				top_stories : []
-			},
-			datePointer : null
-			,
-			newsDataList  : [],
-			fetchNewestFlag : false
+			zhihuDailyData : this.$store.state.zhihuDailyData
+		}
+	},
+	computed(){
+		return {
+			
 		}
 	},
 	methods: {
 		onInfinite(){
-			let api 
-
-			if(!this.fetchNewestFlag){
-				api = API.lastest
-			} else {
-				api = API.newsByDate + Util.formatDateWithFormat(this.datePointer, 'yyyyMMdd')
-			}
-			axios.get(api).then(response => {
-				if(!response.data) return
-
-				let zhihudata  = response.data
-
-					zhihudata.stories = zhihudata.stories.map(val => {
-						val.images = val.images.map(imageUrl => {
-							return Util.replaceImageUrl(imageUrl)
-						})
-						return val
-					})
-
-					if(zhihudata.top_stories){
-						zhihudata.top_stories = zhihudata.top_stories.map(val=>{
-						 val.image = Util.replaceImageUrl(val.image)
-						 return val
-						})
-					}
-					
-					if(!this.datePointer){
-						this.datePointer = new Date()
-					} else {
-						this.datePointer.setDate(this.datePointer.getDate()-1)
-					}
-					this.newsDataList.push(zhihudata)
-					this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
-					if(!this.fetchNewestFlag) this.fetchNewestFlag=true
-			})
-
-		}	
+		},
 	}
 }
 </script>

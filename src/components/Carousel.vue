@@ -5,7 +5,7 @@
 
 				<router-link :to="`detail/${item.id}`">
           <div class="swiper-mask"></div>
-					<img :src="item.image" />
+					<img :src="imageProxy(item.image)" />
 					<p>{{ item.title }}</p>
 				</router-link>
 			</div>	
@@ -17,12 +17,16 @@
 <script >
 import 'swiper/dist/css/swiper.min.css'
 import Swiper from 'swiper'
+import * as Util from  '../common/util'
 
 
 export default {
 	props:{
 		list: Array
 	},
+  methods: {
+    imageProxy: Util.replaceImageUrl
+  },
   updated () {
       this.$nextTick(() => {
         new Swiper('.swiper-container', {
