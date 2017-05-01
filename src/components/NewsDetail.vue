@@ -16,6 +16,11 @@ export default {
 		 	newsDetailData : {}
 		 }
 	},
+	computed(){
+		return {
+			newsDetail : this.$store.getters
+		}
+	},
 	mounted(){
 		let self = this
 		let url  = API.newsbyid + this.$route.params.id

@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import API from '../api/index'
-import axios from 'axios'
+
+import  actions  from './actions'
+
 Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
@@ -24,24 +25,5 @@ export const store = new Vuex.Store({
             state.zhihuDailyData.push(data)
         }
     },
-    actions: {
-        fetchNewsList({ state, commit }) {
-            
-            let newsCount = state.zhihuDailyData.length
-            let newsApi
-            if (!newsCount) {
-                newsApi = API.lastest
-            } else {
-                const lastestNews = state.zhihuDailyData.slice(-1)[0]
-                newsApi = API.newsByDate + lastestNews.date
-            }
-
-            return axios.get(newsApi).then(response => {
-                commit('handleNewsData', response.data)
-                return Promise.resolve()
-            })
-
-
-        }
-    }
+    actions
 })
