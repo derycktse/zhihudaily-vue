@@ -1,6 +1,7 @@
 <template>
 	<div class="newscontent">
-		<div v-html="imgProxy(newsDetailData.body || '')"></div>
+		<!--<div v-html="imgProxy(newsDetail.body || 'test')"></div>-->
+		<div> detial page</div>
 	</div>
 </template>
 
@@ -13,20 +14,27 @@ import * as Util from '../common/util'
 export default {
 	data(){
 		 return {
-		 	newsDetailData : {}
+		 	// newsDetailData : {}
 		 }
 	},
-	computed(){
-		return {
-			newsDetail : this.$store.getters
-		}
+	computed:{
+			newsDetail(){
+				
+				let newsID = this.$route.params.id
+				
+				return this.$store.state.newsDetail[newsID] 
+			}
 	},
-	mounted(){
-		let self = this
-		let url  = API.newsbyid + this.$route.params.id
-		axios.get(url).then((res)=>{
-			self.newsDetailData = res.data
-		})
+	created(){
+		let newsID = this.$route.params.id
+		if(!this.$store.state.newsDetail[newsID]){
+					this.$store.dispatch('fetchNewsDetailById',{
+						newsID : newsID
+					})
+				}
+	},
+	beforeRouteEnter(){
+		// debugger
 	},
 	methods:{
 		imgProxy : Util.replaceImageUrl,
