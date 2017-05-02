@@ -24,7 +24,7 @@ function fetchNewsDetailById({ state, commit }, payload) {
     let newsID = payload.newsID
 
     return axios.get(detailAPI+newsID).then(response => {
-        state.newsDetail[newsID] = response.data       
+        state.newsDetailSet[newsID] = response.data       
         return Promise.resolve()
     })
 }

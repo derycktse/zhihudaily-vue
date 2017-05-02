@@ -1,7 +1,6 @@
 <template>
 	<div class="newscontent">
-		<!--<div v-html="imgProxy(newsDetail.body || 'test')"></div>-->
-		<div> detial page</div>
+		<div v-html="imgProxy(data.body || '')"></div>
 	</div>
 </template>
 
@@ -9,36 +8,36 @@
 import axios from 'axios'
 import API from '../api/index'
 import * as Util from '../common/util'
+import {mapGetters, mapActions} from 'vuex'
 
 
 export default {
 	data(){
 		 return {
-		 	// newsDetailData : {}
+			 newsID : this.$route.params.id,
+			 data : {}
 		 }
 	},
 	computed:{
-			newsDetail(){
-				
-				let newsID = this.$route.params.id
-				
-				return this.$store.state.newsDetail[newsID] 
-			}
+		...mapGetters(['newsDetailList']),
+		newsDetail(){
+			let newsID = this.$route.params.id
+			return this.newsDetailList[newsID] || {}
+		}
 	},
 	created(){
-		let newsID = this.$route.params.id
-		if(!this.$store.state.newsDetail[newsID]){
-					this.$store.dispatch('fetchNewsDetailById',{
-						newsID : newsID
-					})
-				}
-	},
-	beforeRouteEnter(){
-		// debugger
+		if(!this.data.body){
+			this.$store.dispatch('fetchNewsDetailById',{
+				newsID : this.newsID
+			}).then(()=>{
+				this.data = this.newsDetail
+			}) 
+		} else {
+			this.data = this.newsDetail
+		}
 	},
 	methods:{
 		imgProxy : Util.replaceImageUrl,
-		imgProxy2 : Util.replaceImageUrl
 	}
 }
 </script>

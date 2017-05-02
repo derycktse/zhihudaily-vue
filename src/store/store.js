@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
         zhihuDailyData: [],
-        newsDetail: {}
+        newsDetailSet: {}
     },
     getters: {
         carouselData: (state) => {
@@ -17,6 +17,9 @@ export const store = new Vuex.Store({
                 state.carouselSet = state.zhihuDailyData[0] && state.zhihuDailyData[0].top_stories
             }
             return state.carouselSet || []
+        },
+        newsDetailList:(state)=>{
+            return state.newsDetailSet
         }
     },
     mutations: {
