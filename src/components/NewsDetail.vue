@@ -1,5 +1,10 @@
 <template>
 	<div class="newscontent">
+		<div class="news-detail-brief-box">
+			<img class="news-detail-poster" :src="imgProxy(data.image || '')">
+			<p class="news-detail-desc">{{ data.title || "" }}</p>
+			<span class="span-from">图片：{{ data.image_source || "" }}</span>
+		</div>
 		<div v-html="imgProxy(data.body || '')"></div>
 	</div>
 </template>
@@ -41,3 +46,18 @@ export default {
 	}
 }
 </script>
+<style lang="stylus" rel="stylesheet/stylus">
+.news-detail-brief-box
+	position relative
+	color #fff
+	.news-detail-desc
+		position absolute
+		bottom 30px
+		font-size 30px
+    .span-from
+		position absolute
+		bottom 0
+		right 0
+.headline .img-place-holder
+	height 0
+</style>
