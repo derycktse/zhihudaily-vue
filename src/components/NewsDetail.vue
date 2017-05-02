@@ -29,7 +29,8 @@ export default {
 		})
 	},
 	methods:{
-		imgProxy : Util.replaceImageUrl
+		imgProxy : Util.replaceImageUrl,
+		imgProxy2 : Util.replaceImageUrl
 	}
 }
 </script>
