@@ -1,6 +1,4 @@
 require('./check-versions')()
-let request = require('request')
-let zhihuAPI = require('../config/api')
 
 var config = require('../config')
 if (!process.env.NODE_ENV) {
@@ -23,21 +21,6 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
-
-app.use('/latest', (req, res)=>{
-  let url = zhihuAPI.lastest
-  req.pipe(request(url)).pipe(res)
-})
-
-app.use('/before/:date', (req, res)=>{
-  let url = zhihuAPI.beforeDate+ req.params.date
-  req.pipe(request(url)).pipe(res)
-} )
-
-app.use('/news/:newsid', (req,res)=>{
-  let url = zhihuAPI.newsDetail + req.params.newsid
-  req.pipe(request(url)).pipe(res)
-} )
 
 
 var compiler = webpack(webpackConfig)
