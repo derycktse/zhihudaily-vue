@@ -28,11 +28,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/lastest': {
-        target: API.lastest,
+      '/latest': {
+        target: API.latest,
         changeOrigin: true,
         pathRewrite: {
-          "^/lastest": ""
+          "^/latest": ""
         }
       },
       '/before': {

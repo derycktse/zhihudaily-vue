@@ -1,5 +1,5 @@
 const api = {
-	lastest : "http://news-at.zhihu.com/api/3/stories/latest",
+	latest : "http://news-at.zhihu.com/api/3/stories/latest",
 	beforeDate : 'http://news-at.zhihu.com/api/4/news/before/',
 	newsDetail :  'http://news-at.zhihu.com/api/4/news/'	
 }
