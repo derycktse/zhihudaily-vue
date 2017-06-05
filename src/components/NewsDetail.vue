@@ -50,6 +50,8 @@ export default {
 .news-detail-brief-box
 	position relative
 	color #fff
+	.news-detail-poster
+		width 100%
 	.news-detail-desc
 		position absolute
 		bottom 30px
