@@ -38,6 +38,9 @@ section
         text-align center
         font-size 35px
         color #fff
+        position sticky 
+        top 0
+        z-index 10
     ul 
         padding 0 20px
     .list-item
