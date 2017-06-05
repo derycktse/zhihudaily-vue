@@ -1,15 +1,30 @@
 <template>
-	<div class="newscontent">
-		<div class="news-detail-brief-box">
-			<img class="news-detail-poster" :src="imgProxy(data.image || '')">
-			<p class="news-detail-desc">{{ data.title || "" }}</p>
-			<span class="span-from">图片：{{ data.image_source || "" }}</span>
+	<div>
+		<div v-if="!data.image"  class="mocka-container">
+			<span class="mocka-media"></span>
+ 			 <span class="mocka-heading"></span>
+  			<span class="mocka-text"></span>
 		</div>
-		<div v-html="imgProxy(data.body || '')"></div>
+		<div v-else class="newscontent">
+			<div class="news-detail-brief-box">
+				<img class="news-detail-poster" :src="imgProxy(data.image || '')">
+				<p class="news-detail-desc">{{ data.title || "" }}</p>
+				<span class="span-from">图片：{{ data.image_source || "" }}</span>
+			</div>
+			<div v-html="imgProxy(data.body || '')"></div>
+		</div>
 	</div>
 </template>
 
+<style scoped lang="stylus" rel="stylesheet/stylus">
+.mocka-container
+	width 100%
+	border none
+</style>
+
 <script>
+import 'mocka-placeholder/dist/mocka.min.css'
+
 import axios from 'axios'
 import API from '../api/index'
 import * as Util from '../common/util'
