@@ -13,6 +13,7 @@
 			</div>
 			<div v-html="imgProxy(data.body || '')"></div>
 		</div>
+		<detail-tool-box></detail-tool-box>
 	</div>
 </template>
 
@@ -24,6 +25,7 @@
 
 <script>
 import 'mocka-placeholder/dist/mocka.min.css'
+import DetailToolBox  from './DetailToolBox.vue'
 
 import axios from 'axios'
 import API from '../api/index'
@@ -37,6 +39,9 @@ export default {
 			 newsID : this.$route.params.id,
 			 data : {}
 		 }
+	},
+	components:{
+		DetailToolBox
 	},
 	computed:{
 		...mapGetters(['newsDetailList']),
